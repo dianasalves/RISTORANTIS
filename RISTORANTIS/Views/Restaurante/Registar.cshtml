@@ -1,0 +1,89 @@
+﻿@model RISTORANTIS.Models.Restaurante
+
+@{
+    ViewData["Title"] = "Registar";
+}
+
+<head>
+    <style>
+        .button {
+            background-color: #F5DEB3;
+            border-color: #000000;
+            color: #000000;
+            padding: 5px 20px;
+            text-align: center;
+            display: compact;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<h1>Registar</h1>
+
+<h4>Restaurante</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+		<form asp-action="Registar" enctype="multipart/form-data">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group" hidden>
+				<label asp-for="IdRestaurante" class="control-label"></label>
+				<select asp-for="IdRestaurante" class="form-control" asp-items="ViewBag.IdRestaurante"></select>
+			</div>
+			<div class="form-group">
+				<label asp-for="Telefone" class="control-label"></label>
+				<input asp-for="Telefone" class="form-control" type="tel" />
+				<span asp-validation-for="Telefone" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="LocalizacaoGps" class="control-label"></label>
+				<input asp-for="LocalizacaoGps" class="form-control" />
+				<span asp-validation-for="LocalizacaoGps" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="EnderecoCodigoPostal" class="control-label"></label>
+				<input asp-for="EnderecoCodigoPostal" class="form-control" />
+				<span asp-validation-for="EnderecoCodigoPostal" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="EnderecoMorada" class="control-label"></label>
+				<input asp-for="EnderecoMorada" class="form-control" type="text" />
+				<span asp-validation-for="EnderecoMorada" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="EnderecoLocalidade" class="control-label"></label>
+				<input asp-for="EnderecoLocalidade" class="form-control" type="text" />
+				<span asp-validation-for="EnderecoLocalidade" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Horario" class="control-label"></label>
+				<input asp-for="Horario" class="form-control" type="text" />
+				<span asp-validation-for="Horario" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="DiaDescanso" class="control-label"></label>
+				<input asp-for="DiaDescanso" class="form-control" type="text" />
+				<span asp-validation-for="DiaDescanso" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Fotografia" class="control-label"></label>
+				<input required type="file" asp-for="Fotografia" class="form-control" />
+				<span asp-validation-for="Fotografia" class="text-danger"></span>
+			</div>
+			<div class="form-group" hidden>
+				<label asp-for="EstadoR" class="control-label"></label>
+				<input asp-for="EstadoR" class="form-control" value="Em_Espera" />
+				<span asp-validation-for="EstadoR" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Seguinte" class="button" />
+			</div>
+		</form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Accounts" asp-action="Login" style="color:black">Fazer Login</a>
+</div>
+
+

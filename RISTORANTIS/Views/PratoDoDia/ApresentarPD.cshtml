@@ -1,0 +1,77 @@
+﻿@model IEnumerable<RISTORANTIS.Models.Registar>
+
+@{
+    ViewData["Title"] = "ApresentarPD";
+}
+
+<head>
+    <style>
+        .button {
+            background-color: #F5DEB3;
+            border-color: #000000;
+            color: #000000;
+            padding: 5px 15px;
+            text-align: center;
+            display: compact;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<h1 class="text-center">Lista Pratos do Dia</h1>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+
+<link href="~/StyleSheetGeral.css" rel="stylesheet" />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPratoDoDiaNavigation.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPratoDoDiaNavigation.Tipo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPratoDoDiaNavigation.Nome)
+            </td>
+            <td>
+                @if (item.IdPratoDoDiaNavigation.Tipo == 1)
+                {
+                    @Html.DisplayName("Carne")
+                }
+                else if (item.IdPratoDoDiaNavigation.Tipo == 2)
+                {
+                    @Html.DisplayName("Peixe")
+                }
+                else if (item.IdPratoDoDiaNavigation.Tipo == 3)
+                {
+                    @Html.DisplayName("Vegan")
+                }
+                else if (item.IdPratoDoDiaNavigation.Tipo == 4)
+                {
+                    @Html.DisplayName("Vegetariano")
+                }
+            </td>
+            <td>
+                <a asp-action="Editar" asp-controller="RegistarPD" asp-route-id="@item.IdPratoDoDia" style="color:peru">Editar</a> |
+                <a asp-action="Detalhes" asp-route-id="@item.IdPratoDoDia" style="color:peru">Detalhes</a> |
+                <a asp-action="Apagar" asp-route-id="@item.IdPratoDoDia" style="color:peru">Apagar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Painel" asp-controller="Restaurante" style="color:black"> < Voltar </a>
+</div>

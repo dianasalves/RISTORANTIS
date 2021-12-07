@@ -1,0 +1,59 @@
+﻿@model RISTORANTIS.Models.Registar
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h1>Detalhes</h1>
+
+<link href="~/StyleSheetGeral.css" rel="stylesheet" />
+
+<div>
+    <h4>Registar</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Fotografia)
+        </dt>
+            <dd class="col-sm-10">
+                <img src="~/Imagens/@Model.Fotografia" height="50" width="100" />
+            </dd>
+        <dt class="col-sm-2">
+            <label> Descrição </label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt class="col-sm-2">
+            <label> Preço </label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Preco)
+        </dd>
+        <dt class="col-sm-2">
+            <label> Disponibilidade </label>
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                string data = @Model.DataDisponibilidade.ToString("dd/MM/yyyy HH:mm");
+            }
+            @data
+           @* @Html.DisplayFor(model => model.DataDisponibilidade)*@
+        </dd>
+        <dt hidden class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdPratoDoDiaNavigation)
+        </dt>
+        <dd hidden class="col-sm-10">
+            @Html.DisplayFor(model => model.IdPratoDoDiaNavigation.Nome)
+        </dd>
+        <dt hidden class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdRestauranteNavigation)
+        </dt>
+        <dd hidden class="col-sm-10">
+            @Html.DisplayFor(model => model.IdRestauranteNavigation.DiaDescanso)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="ApresentarPD" style="color:black" >Voltar</a>
+</div>

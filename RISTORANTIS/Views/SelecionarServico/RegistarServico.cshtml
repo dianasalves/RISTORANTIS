@@ -1,0 +1,69 @@
+﻿@model RISTORANTIS.Models.TipoServico
+
+@{
+    ViewData["Title"] = "RegistarServico";
+}
+
+<head>
+    <style>
+        .button {
+            background-color: #F5DEB3;
+            border-color: #000000;
+            color: #000000;
+            padding: 5px 20px;
+            text-align: center;
+            display: compact;
+            font-size: 15px;
+        }
+		.label {
+			color: red;
+			padding: 10px;
+			font-family: Arial;
+		}
+		.selecionar {
+			background-color:white;
+		}
+    </style>
+</head>
+
+<h1>Registar Serviçco</h1>
+
+<h4>Tipo de Serviço</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+		<form asp-action="RegistarServico">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			@using (Html.BeginForm())
+			{
+				<span class="label selecionar">Tem de escolher pelo menos um Tipo de Serviço!</span>
+				<br />
+				<br />
+				<br />
+				<table>
+					@for (int i = 0; i < Model.ts.Count; i++)
+					{
+
+						<td>
+							@Html.CheckBoxFor(model => model.ts[i].Selecionado)
+							<label>@Model.ts[i].NomeTipoS </label>
+							@Html.HiddenFor(model => model.ts[i].IdServico)
+							@Html.HiddenFor(model => model.ts[i].NomeTipoS)
+						</td>
+					}
+
+				</table>
+
+				<input type="submit" value="Submeter" class="button" />
+			}
+		</form>
+    </div>
+</div>
+
+<br />
+<br />
+<div >
+    <a asp-action="Registar" asp-controller="Restaurante" style="color:black" >Voltar</a>
+</div>
+

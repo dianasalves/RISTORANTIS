@@ -1,0 +1,80 @@
+﻿@model RISTORANTIS.Models.PratoDoDium
+
+@{
+    ViewData["Title"] = "RegistarNovoPrato";
+}
+
+<head>
+    <style>
+        .button {
+            background-color: #F5DEB3;
+            border-color: #000000;
+            color: #000000;
+            padding: 5px 20px;
+            text-align: center;
+            display: compact;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<h1>Registo Novo Prato</h1>
+
+<h4>Prato do Dia</h4>
+<hr />
+
+<link href="~/StyleSheetGeral.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RegistarNovoPrato" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"> Nome do Prato </label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @ViewData["TipoEscolhido"] @Html.DropDownListFor(t => t.Tipo, ViewBag.TipoPratoDoDia as SelectList, "Tipo de Prato", "Carne")
+                <input asp-for="Tipo" value="@ViewData["TipoEscolhido"]" type="hidden"/>
+                @*<select class="form-control" id="TipoPratoDoDia" name="TipoPratoDoDia">
+            <option>
+                Carne
+            </option>
+            <option>
+                Peixe
+            </option>
+            <option>
+                Vegan
+            </option>
+        </select>*@
+                <!--<div class="form-group">
+                    <label asp-for="Tipo" class="control-label">Carne</label>
+                    <input asp-for="Tipo" class="form-control" value="Carne" type="radio" />
+                    <label asp-for="Tipo" class="control-label">Peixe</label>
+                    <input asp-for="Tipo" class="form-control" value="Peixe" type="radio" />
+
+                    <label asp-for="Tipo" class="control-label">Vegan</label>
+                    <input asp-for="Tipo" class="form-control" value="Vegetariano" type="radio" />-->
+
+
+                    @*<label asp-for="TipoPrato" class="control-label"></label>
+            <input asp-for="TipoPrato" class="form-control" />*@
+                    <!--<span asp-validation-for="Tipo" class="text-danger"></span>
+                </div>-->
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Seguinte" class="button" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    @*<a asp-action="RegistarNovoPrato" asp-controller="PratoDoDium" style="color:black">Voltar</a>*@
+    <a asp-action="Painel" asp-controller="Restaurante" style="color:black"> < Voltar </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

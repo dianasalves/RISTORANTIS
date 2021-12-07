@@ -1,0 +1,68 @@
+﻿@model IEnumerable<RISTORANTIS.Models.SelecionarPFavorito>
+
+@{
+    ViewData["Title"] = "FavoritosPD";
+}
+
+<h1 class="text-center" >Pratos Favoritos</h1>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th hidden>
+                @Html.DisplayNameFor(model => model.NotificacaoP)
+            </th>
+            <th hidden>
+                @Html.DisplayNameFor(model => model.IdClienteNavigation)
+            </th>
+            <th>
+               <label> Nome </label>
+            </th>
+            <th>
+               <label> Tipo de Prato </label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.NotificacaoP)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.IdClienteNavigation.IdCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPratoNavigation.Nome)
+            </td>
+            <td>
+                @if (item.IdPratoNavigation.Tipo == 1)
+                {
+                    @Html.DisplayName("Carne")
+                }
+                else if (item.IdPratoNavigation.Tipo == 2)
+                {
+                    @Html.DisplayName("Peixe")
+                }
+                else if (item.IdPratoNavigation.Tipo == 3)
+                {
+                    @Html.DisplayName("Vegan")
+                }
+                else if (item.IdPratoNavigation.Tipo == 4)
+                {
+                    @Html.DisplayName("Vegetariano")
+                }
+            </td>
+            <td>
+                <a asp-action="Detalhes3" asp-route-id="@item.IdPrato" style="color:peru"> Detalhes </a> | <a asp-action="Detalhes2" asp-route-id="@item.IdPrato" style="color:peru"> Sobre o Restaurante </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<script src="~/lib/jquery-ajax/jquery.unobtrusive-ajax.js"></script>

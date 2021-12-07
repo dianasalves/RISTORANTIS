@@ -1,0 +1,77 @@
+﻿@model IEnumerable<RISTORANTIS.Models.Registar>
+
+@{
+    ViewData["Title"] = "DetalhesPR";
+}
+
+<h1 class="text-center"> Lista de Pratos Registados </h1>
+
+<link rel="stylesheet" href="~/StyleSheetGeral.css" />
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Fotografia)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.IdPratoDoDiaNavigation.Nome)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.IdPratoDoDiaNavigation.Tipo)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Descricao)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Preco)
+			</th>
+		</tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+			<td>
+				<img src="~/Imagens/@item.Fotografia" height="100" width="150" />
+			</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPratoDoDiaNavigation.Nome)
+            </td>
+			<td>
+				@if (item.IdPratoDoDiaNavigation.Tipo == 1)
+				{
+					@Html.DisplayName("Carne")
+				}
+				else if (item.IdPratoDoDiaNavigation.Tipo == 2)
+				{
+					@Html.DisplayName("Peixe")
+				}
+				else if (item.IdPratoDoDiaNavigation.Tipo == 3)
+				{
+					@Html.DisplayName("Vegan")
+				}
+				else if (item.IdPratoDoDiaNavigation.Tipo == 4)
+				{
+					@Html.DisplayName("Vegetariano")
+				}
+
+				@*@Html.DisplayFor(modelItem => item.IdPratoDoDiaNavigation.TipoNavigation.NomeTipoP)*@
+
+			</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+        </tr>
+	}
+    </tbody>
+</table>
+
+<div>
+	<a asp-action="GerirUtilizadores" asp-controller="Administradores" style="color:black"> Voltar </a>
+</div>

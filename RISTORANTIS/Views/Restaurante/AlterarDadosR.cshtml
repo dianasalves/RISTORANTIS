@@ -1,0 +1,100 @@
+﻿@model RISTORANTIS.Models.Restaurante
+
+@{
+    ViewData["Title"] = "AlterarDadosR";
+}
+
+<head>
+    <style>
+        .button {
+            background-color: #F5DEB3;
+            border-color: #000000;
+            color: #000000;
+            padding: 5px 20px;
+            text-align: center;
+            display: compact;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<h1>Alterar Dados</h1>
+
+<h4>Restaurante</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AlterarDados" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdRestaurante" />
+            <div class="form-group">
+                <label asp-for="Telefone" class="control-label"></label>
+                <input asp-for="Telefone" class="form-control" />
+                <span asp-validation-for="Telefone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocalizacaoGps" class="control-label"></label>
+                <input asp-for="LocalizacaoGps" class="form-control" />
+                <span asp-validation-for="LocalizacaoGps" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnderecoCodigoPostal" class="control-label"></label>
+                <input asp-for="EnderecoCodigoPostal" class="form-control" />
+                <span asp-validation-for="EnderecoCodigoPostal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnderecoMorada" class="control-label"></label>
+                <input asp-for="EnderecoMorada" class="form-control" />
+                <span asp-validation-for="EnderecoMorada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnderecoLocalidade" class="control-label"></label>
+                <input asp-for="EnderecoLocalidade" class="form-control" />
+                <span asp-validation-for="EnderecoLocalidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Horario" class="control-label"></label>
+                <input asp-for="Horario" class="form-control" />
+                <span asp-validation-for="Horario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiaDescanso" class="control-label"></label>
+                <input asp-for="DiaDescanso" class="form-control" />
+                <span asp-validation-for="DiaDescanso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @if (Model.Fotografia != null)
+                {
+                    <div >
+                        @{
+                            var imagem = String.Format("data:image/gif;base64,{0}", @Model.Fotografia);
+                        }
+                        <label asp-for="Fotografia" class="control-label"></label>
+                        <img src="@imagem" height="100" width: auto/>
+                        @*<img scr="~/Imagens/@Model.Fotografia" height="50" width="70" />*@
+                    </div>
+                    <input required type="file" asp-for="Fotografia" class="form-control" />
+                    <span asp-validation-for="Fotografia" class="text-danger"></span>
+                }
+                else
+                {
+                    <label asp-for="Fotografia" class="control-label"></label>
+                    <img scr="~/Imagens/sem-foto.jpg" height="50" width="70" />
+                    <input required type="file" asp-for="Fotografia" class="form-control" />
+                    <span asp-validation-for="Fotografia" class="text-danger"></span>
+                }
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar Alterações" class="button" asp-action="AlterarDadosR" />
+                <br />
+                <br />
+                @Html.ActionLink("Cancelar", "Painel", "Restaurante", null, new { style = "background-color:wheat; border-color:black; color: black; height: 40px; width: 240px", @class = "btn btn-primary" })
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Painel" style="color:black"> < Voltar </a>
+</div>
+

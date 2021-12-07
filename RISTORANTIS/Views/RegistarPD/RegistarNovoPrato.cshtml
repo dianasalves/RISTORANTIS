@@ -1,0 +1,72 @@
+﻿@model RISTORANTIS.Models.Registar
+
+@{
+    ViewData["Title"] = "RegistarNovoPrato";
+}
+
+<head>
+    <style>
+        .button {
+            background-color: #F5DEB3;
+            border-color: #000000;
+            color: #000000;
+            padding: 5px 20px;
+            text-align: center;
+            display: compact;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<h1>Registo Novo Prato</h1>
+
+<h4>Registo</h4>
+
+<link href="~/StyleSheetGeral.css" rel="stylesheet" />
+<hr />
+
+<link href="~/StyleSheetGeral.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RegistarNovoPrato" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DataDisponibilidade" class="control-label"> Data de Disponibilidade </label>
+                <input asp-for="DataDisponibilidade" class="form-control" />
+                <span asp-validation-for="DataDisponibilidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fotografia" class="control-label"></label>
+                <input asp-for="Fotografia" class="form-control" type ="file"/>
+                <span asp-validation-for="Fotografia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descricao" class="control-label"> Descrição </label>
+                <input asp-for="Descricao" class="form-control" />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Preco" class="control-label">Preço</label>
+                <input asp-for="Preco" class="form-control" />
+                <span asp-validation-for="Preco" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="IdRestaurante" class="control-label"></label>
+                <select asp-for="IdRestaurante" class ="form-control" asp-items="ViewBag.IdRestaurante"></select>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="IdPratoDoDia" class="control-label"></label>
+                <select asp-for="IdPratoDoDia" class ="form-control" asp-items="ViewBag.IdPratoDoDia"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submeter" class="button" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Painel" asp-controller="Restaurante" style="color:black" > Voltar ao Menu </a>
+</div>
+

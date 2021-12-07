@@ -1,0 +1,72 @@
+﻿@model RISTORANTIS.Models.Restaurante
+
+@{
+    ViewData["Title"] = "Detalhes4";
+}
+
+<h1>Detalhes4</h1>
+
+<link href="~/StyleSheetGeral.css" rel="stylesheet" />
+
+<div>
+    <h4>Restaurante</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Fotografia)
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                var imagem = String.Format("data:image/gif;base64,{0}", Model.Fotografia);
+            }
+            <img src="@imagem" height="50" width="90" />
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Telefone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Telefone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LocalizacaoGps)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LocalizacaoGps)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EnderecoCodigoPostal)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EnderecoCodigoPostal)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EnderecoMorada)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EnderecoMorada)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EnderecoLocalidade)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EnderecoLocalidade)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Horario)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Horario)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DiaDescanso)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DiaDescanso)
+        </dd>
+    </dl>
+</div>
+<div>
+    @*<a asp-action="Edit" asp-route-id="@Model.IdRestaurante">Edit</a> |*@
+    <a asp-action="Servicos" asp-controller="Clientes" asp-route-id="@Model.IdRestaurante" class="btn btn-primary; button"> Tipos de Serviço </a>
+    <a asp-action="FavoritosR">Voltar</a>
+</div>

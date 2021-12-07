@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Painel";
+}
+
+<link href="~/StyleSheetGeral.css" rel="stylesheet" />
+
+<div class="text-center">
+    @if (Context.Session.GetString("novouser") != null && Context.Session.GetString("rest") == null)
+    {
+        <h1 class="display-4">Bem-Vindo @Context.Session.GetString("novouser")</h1>
+    }
+    else if (Context.Session.GetString("rest") != null && Context.Session.GetString("novouser") == null)
+    {
+        <h1 class="display-4">Bem-Vindo @Context.Session.GetString("nome")</h1>
+    }
+
+</div>
+
+<h1 class="text-center">Menu de Restaurante</h1>
+<form asp-action="Painel">
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+	<div class="text-center">
+		<br />
+		@Html.ActionLink("Selecionar Pratos do Dia", "SelecionarPD", "Restaurante", null, new { style = "background-color:wheat; border-color:black; color: black; height: 40px; width: 240px", @class = "btn btn-primary" })
+		<br />
+		<br />
+		@Html.ActionLink("Registar Novo Prato", "NovoPrato", "Restaurante", null, new { style = "background-color:wheat; border-color:black; color: black; height: 40px; width: 240px", @class = "btn btn-primary" })
+		<br />
+		<br />
+		@Html.ActionLink("Alterar Dados Conta", "AlterarDadosC", "Restaurante", null, new { style = "background-color:wheat; border-color:black; color: black; height: 40px; width: 240px", @class = "btn btn-primary" })
+		<br />
+		<br />
+		@Html.ActionLink("Alterar Dados Restaurante", "AlterarDadosR", "Restaurante", null, new { style = "background-color:wheat; border-color:black; color: black; height: 40px; width: 240px", @class = "btn btn-primary" })
+	</div>
+
+</form>
+

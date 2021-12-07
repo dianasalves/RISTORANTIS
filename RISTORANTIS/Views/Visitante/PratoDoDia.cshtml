@@ -1,0 +1,86 @@
+﻿@model IEnumerable<RISTORANTIS.Models.Registar>
+
+@{
+    ViewData["Title"] = "PratoDoDia";
+}
+
+<h1>Prato Do Dia</h1>
+
+<link href="~/StyleSheetGeral.css" rel="stylesheet" />
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fotografia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPratoDoDiaNavigation.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Preco)
+            </th>
+            <th>
+                @Html.DisplayName("Tipo de Prato")
+            </th>
+            @*<th></th>*@
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <img src="~/Imagens/@item.Fotografia" height="50" width="90" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPratoDoDiaNavigation.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @if (item.IdPratoDoDiaNavigation.Tipo == 1)
+                {
+                    @Html.DisplayName("Carne")
+                }
+                else if (item.IdPratoDoDiaNavigation.Tipo == 2)
+                {
+                    @Html.DisplayName("Peixe")
+                }
+                else if (item.IdPratoDoDiaNavigation.Tipo == 3)
+                {
+                    @Html.DisplayName("Vegan")
+                }
+                else if (item.IdPratoDoDiaNavigation.Tipo == 4)
+                {
+                    @Html.DisplayName("Vegetariano")
+                }
+            </td>
+            @*<td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+            <td>
+                <a asp-action="SelecionarFavoritoR">
+                    <img id="imagem_fav" height="20" width="20" src="~/Icon/favourite_no.png" />
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="PageInicial" asp-controller="Visitante"> Voltar ao Início </a>
+</div>

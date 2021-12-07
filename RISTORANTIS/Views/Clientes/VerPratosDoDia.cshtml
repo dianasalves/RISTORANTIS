@@ -1,0 +1,115 @@
+﻿@model IEnumerable<RISTORANTIS.Models.Registar>
+
+@{
+    ViewData["Title"] = "VerPratosDoDia";
+}
+
+<h1>Sugestões de Pratos Do Dia</h1>
+
+<form asp-action="PesquisaPD" method="get">
+    <p>
+        <input type="text" name="SearchString" />
+        <button style="border:none" type="submit"><img src="~/Icon/download.png" height="15" width="15" /></button>
+    </p>
+</form>
+
+<link href="~/StyleSheetGeral.css" rel="stylesheet" />
+
+@*<form asp-action="PesquisaPD" method="get">
+    <p>
+        <input type="text" name="SearchString" />
+        <button style="border:none" type="submit"><img src="~/Icon/download.png" height="15" width="15" /></button>
+    </p>
+</form>*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label>Fotografia</label>
+            </th>
+            <th>
+                <label>Nome</label>
+            </th>
+            <th>
+                <label>Tipo de Prato</label>
+            </th>
+            <th>
+               <label>Preço</label>
+            </th>
+            <th>
+                <label>Descrição</label>
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.IdRestauranteNavigation)
+                </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <img src="~/Imagens/@item.Fotografia" height="50" width="100" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPratoDoDiaNavigation.Nome)
+            </td>
+            <td>
+                @if (item.IdPratoDoDiaNavigation.Tipo == 1)
+                {
+                    @Html.DisplayName("Carne")
+                }
+                else if (item.IdPratoDoDiaNavigation.Tipo == 2)
+                {
+                    @Html.DisplayName("Peixe")
+                }
+                else if (item.IdPratoDoDiaNavigation.Tipo == 3)
+                {
+                    @Html.DisplayName("Vegan")
+                }
+                else if (item.IdPratoDoDiaNavigation.Tipo == 4)
+                {
+                    @Html.DisplayName("Vegetariano")
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+                @*@Html.ActionLink("Sobre o Restaurante", "Detalhes1", new { /* id=item.PrimaryKey */ })*@
+                @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                @*<a asp-action="Detalhes1" asp-route-id="@item.IdPratoDoDia">Sobre o Restaurante</a>*@
+            </td>
+            <td>
+                <a asp-action="SelecionarFavoritoPD" asp-route-id="@item.IdPratoDoDia">
+                    @{ if (item.SelecionarPFavoritos.Where(x => x.IdCliente == @Context.Session.GetInt32("ClientID") && x.IdPrato == item.IdPratoDoDia).Count() == 0)
+                        {
+                            <img id="imagem_fav" height="20" width="20" src="~/Icon/favourite_no.png" />}
+                        else
+                        {
+                            <img id="imagem_fav" height="20" width="20" src="~/Icon/favourite_yes.png" />
+                        }
+
+                    }
+                </a>
+            </td>
+            <td>
+                <a asp-action="Detalhes1" asp-route-id="@item.IdPratoDoDia" style="color:peru"> Sobre o Restaurante </a>
+
+            </td>
+
+        </tr>
+
+        }
+
+    </tbody>
+</table>
+
+<script src="~/lib/jquery-ajax/jquery.unobtrusive-ajax.js"></script>
+

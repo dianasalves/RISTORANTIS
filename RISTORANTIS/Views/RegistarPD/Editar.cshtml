@@ -1,0 +1,68 @@
+﻿@model RISTORANTIS.Models.Registar
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<head>
+    <style>
+        .button {
+            background-color: #F5DEB3;
+            border-color: #000000;
+            color: #000000;
+            padding: 5px 20px;
+            text-align: center;
+            display: compact;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<link href="~/StyleSheetGeral.css" rel="stylesheet" />
+
+<h1 class="text-center">Alterar Data de Disponibilidades</h1>
+
+<h4 class="text-center">Prato do Dia</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Editar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<input type="hidden" asp-for="DataDisponibilidade" />*@
+            <div class="form-group">
+                <label asp-for="DataDisponibilidade" class="control-label"> Data de Disponibilidade: </label>
+                <input asp-for="DataDisponibilidade" class="form-control" type="date"/>
+                <span asp-validation-for="DataDisponibilidade" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Fotografia" class="control-label"></label>
+                <input asp-for="Fotografia" class="form-control" />
+                <span asp-validation-for="Fotografia" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Descricao" class="control-label"></label>
+                <input asp-for="Descricao" class="form-control" />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Preco" class="control-label"></label>
+                <input asp-for="Preco" class="form-control" />
+                <span asp-validation-for="Preco" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="IdRestaurante" />
+            <input type="hidden" asp-for="IdPratoDoDia" />
+            <div class="form-group">
+                <input type="submit" value="Submeter Edição" class="btn btn-primary; button" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Painel" asp-controller="Restaurante" style="color:black"> Voltar ao Menu</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

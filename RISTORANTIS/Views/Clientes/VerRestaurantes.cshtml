@@ -1,0 +1,131 @@
+﻿@model IEnumerable<RISTORANTIS.Models.Restaurante>
+
+@{
+	ViewData["Title"] = "VerRestaurantes";
+}
+
+<h1>Restaurantes</h1>
+
+<form asp-action="Pesquisa" method="get">
+    <p>
+        <input type="text" name="SearchString" />
+        <button style="border:none" type="submit"><img src="~/Icon/download.png" height="15" width="15" /></button>
+    </p>
+</form>
+
+<link href="~/StyleSheetGeral.css" rel="stylesheet" />
+
+<table class="table">
+	<thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fotografia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdRestauranteNavigation.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdRestauranteNavigation.Email)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.EnderecoLocalidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Horario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fotografia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaDescanso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdRestauranteNavigation)
+        </th>*@
+            <!--<th></th>
+    </tr>-->
+</thead>
+	<tbody>
+		@foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @{
+                    var imagem = String.Format("data:image/gif;base64,{0}", @item.Fotografia);
+                }
+                <img src="@imagem" height="75" width: auto />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdRestauranteNavigation.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdRestauranteNavigation.Email)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.EnderecoLocalidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Horario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fotografia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaDescanso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdRestauranteNavigation.Email)
+        </td>*@
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.IdRestaurante">Edit</a> |*@
+
+                @*<img id="Image" onclick="changeImage(this)" src="~/Icon/kisspng-computer-icons-encapsulated-postscript-5afbb222949223.9344406515264445786086.jpg" width="20" height="20" />*@
+                @*<a href="#"><img height="20" width="20" src="~/Icon/favourite_no.png" id="imagem1" onclick="mudaImagem(this)" /></a>*@
+
+                <a asp-action="SelecionarFavoritoR" asp-route-id="@item.IdRestaurante">
+                    @{ if (item.SelecionarRFavoritos.Where(x => x.IdCliente == @Context.Session.GetInt32("ClientID") && x.IdRestaurante == item.IdRestaurante).Count() == 0)
+                        {
+                            <img id="imagem_fav" height="20" width="20" src="~/Icon/favourite_no.png" />}
+                        else
+                        {
+                            <img id="imagem_fav" height="20" width="20" src="~/Icon/favourite_yes.png" />
+                        }
+
+                    }
+                </a>
+            </td>
+
+            @*<form asp-action="SelecionarFavoritoR"
+              data-ajax="true" data-ajax-method="post"
+              data-ajax-mode="replace" data-ajax-update="#box"
+              asp-route-id="@item.IdRestaurante"
+              style="color:peru">
+            Favorito
+        </form>
+        <div id="box">
+            <a href="#"><img height="20" width="20" src="~/Icon/favourite_no.png" id="imagem3" onclick="mudaImagem(this)" /></a>
+        </div>*@
+
+            @*<a href="#"><img height="20" width="20" src="~/Icon/48f14152b5909a9eee05e68b63ad59d2.jpg" alt="Imagem1" id="imagem2" onclick="mudaImagem(2)" /></a>*@
+            <td>
+                <a asp-action="Detalhes" asp-route-id="@item.IdRestaurante" style="color:peru"> Detalhes </a>
+
+            </td>
+
+        </tr>
+
+ }
+
+</tbody >
+</table >
+
+<script src = "~/lib/jquery-ajax/jquery.unobtrusive-ajax.js" ></script >
+
+                @*<script>
+        function mudaImagem(el) {
+
+            el.src = "~/Icon/48f14152b5909a9eee05e68b63ad59d2.jpg";
+            el.mudaImagem(el);
+            //document.getElementById("imagem2").src = "kisspng-computer-icons-encapsulated-postscript-5afbb222949223.9344406515264445786086.jpg";
+        }
+    </script>*@

@@ -1,0 +1,64 @@
+﻿@model RISTORANTIS.Models.PratoDoDium
+
+@{
+    ViewData["Title"] = "Apagar";
+}
+
+<head>
+    <style>
+        .button {
+            background-color: #F5DEB3;
+            border-color: #000000;
+            color: #000000;
+            padding: 5px 20px;
+            text-align: center;
+            display: compact;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<h1>Apagar</h1>
+
+<link href="~/StyleSheetGeral.css" rel="stylesheet" />
+
+<h3>Tem a certeza que deseja apagar este Prato do Dia?</h3>
+<div>
+    @*<h4>PratoDoDium</h4>*@
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Tipo == 1)
+            {
+                @Html.DisplayName("Carne")
+            }
+            else if (Model.Tipo == 2)
+            {
+                @Html.DisplayName("Peixe")
+            }
+            else if (Model.Tipo == 3)
+            {
+                @Html.DisplayName("Vegan")
+            }
+            else if (Model.Tipo == 4)
+            {
+                @Html.DisplayName("Vegetariano")
+            }
+        </dd>
+    </dl>
+    
+    <form asp-action="Apagar">
+        <input type="hidden" asp-for="IdPrato" />
+        <input type="submit" value="Apagar" class="btn btn-danger" /> 
+        <a asp-action="ApresentarPD" style="color:black" >Voltar</a>
+    </form>
+</div>

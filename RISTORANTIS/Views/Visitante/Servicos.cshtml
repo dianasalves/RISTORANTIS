@@ -1,0 +1,60 @@
+﻿@model IEnumerable<RISTORANTIS.Models.SelecionarServico>
+
+@{
+	ViewData["Title"] = "Servicos";
+}
+
+<h1 class="text-center"> Tipos de Serviço do Restaurante</h1>
+
+<link rel="stylesheet" href="~/StyleSheetGeral.css" />
+
+@*<p>
+		<a asp-action="Create">Create New</a>
+	</p>*@
+<table class="table">
+	<thead>
+		<tr>
+			@*<th>
+					@Html.DisplayNameFor(model => model.IdRestauranteNavigation)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.IdServicoNavigation)
+				</th>*@
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@*@Html.DisplayFor(modelItem => item.IdRestauranteNavigation.DiaDescanso)*@
+					@if (item.IdServico == 1)
+					{
+						@Html.DisplayName("Entrega");
+					}
+					else if (item.IdServico == 2)
+					{
+						@Html.DisplayName("Local");
+					}
+					else if (item.IdServico == 3)
+					{
+						@Html.DisplayName("Takeway");
+					}
+				</td>
+				@*<td>
+						@Html.DisplayFor(modelItem => item.IdServicoNavigation.NomeTipoS)
+					</td>*@
+				<td>
+					@*<a asp-action="Edit" asp-route-id="@item.ID_SelectServico">Edit</a> |
+						<a asp-action="Details" asp-route-id="@item.ID_SelectServico">Details</a> |
+						<a asp-action="Delete" asp-route-id="@item.ID_SelectServico">Delete</a>*@
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<div>
+	<a asp-action="PageInicial" asp-controller="Visitante"> Voltar ao Início </a>
+</div>

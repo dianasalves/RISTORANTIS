@@ -1,0 +1,60 @@
+﻿@model IEnumerable<RISTORANTIS.Models.SelecionarRFavorito>
+
+@{
+    ViewData["Title"] = "FavoritosR";
+}
+
+<h1 class="text-center">Restaurantes Favoritos</h1>
+
+<link href="~/StyleSheetGeral.css" rel="stylesheet" />
+
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th hidden>
+                @Html.DisplayNameFor(model => model.NotificacaoR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdRestauranteNavigation.IdRestauranteNavigation.Restaurante.Fotografia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdRestauranteNavigation.IdRestauranteNavigation.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdRestauranteNavigation.IdRestauranteNavigation.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td hidden>
+                    @Html.DisplayFor(modelItem => item.NotificacaoR)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.IdRestauranteNavigation.IdRestauranteNavigation.Restaurante.Fotografia)*@
+                    @{
+                        var imagem = String.Format("data:image/gif;base64,{0}", @item.IdRestauranteNavigation.IdRestauranteNavigation.Restaurante.Fotografia);
+                    }
+                    <img src="@imagem" height="75" width: auto />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdRestauranteNavigation.IdRestauranteNavigation.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdRestauranteNavigation.IdRestauranteNavigation.Email)
+                </td>
+                <td>
+                    <a asp-action="Detalhes4" asp-route-id="@item.IdRestauranteNavigation.IdRestauranteNavigation.IdUtilizador" style="color:peru">Detalhes</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/lib/jquery-ajax/jquery.unobtrusive-ajax.js"></script>

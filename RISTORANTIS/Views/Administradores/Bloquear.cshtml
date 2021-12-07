@@ -1,0 +1,62 @@
+﻿@model RISTORANTIS.Models.Bloquear
+
+@{
+    ViewData["Title"] = "Bloquear";
+}
+
+<head>
+    <style>
+        .button {
+            background-color: #F5DEB3;
+            border-color: #000000;
+            color: #000000;
+            padding: 5px 20px;
+            text-align: center;
+            display: compact;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<h1>Bloquear</h1>
+
+<link href="~/StyleSheetGeral.css" rel="stylesheet" />
+
+<h4>Utilizador</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Bloquear">
+            <div class="form-group" hidden>
+                <label asp-for="DataDesbloqueio" class="control-label"></label>
+                <input asp-for="DataDesbloqueio" class="form-control" />
+                <span asp-validation-for="DataDesbloqueio" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="IdAdministrador" class="control-label"></label>
+                <select asp-for="IdAdministrador" class="form-control" asp-items="ViewBag.IdAdministrador"></select>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="IdUtilizador" class="control-label"></label>
+                <select asp-for="IdUtilizador" class="form-control" asp-items="ViewBag.IdUtilizador"></select>
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MotivoBloqueio" class="control-label"> Motivo de Bloqueio </label>
+                <textarea id="textearea1" cols="5" rows="5" asp-for="MotivoBloqueio" class="form-control"> </textarea>
+                <span asp-validation-for="MotivoBloqueio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Bloquear" class="button; btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="GerirUtilizadores" style="color:black">Voltar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

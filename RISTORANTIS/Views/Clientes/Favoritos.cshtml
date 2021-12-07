@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "Favoritos";
+}
+
+
+<h1 class="text-center" >Favoritos</h1>
+
+<link href="~/StyleSheetGeral.css" rel="stylesheet" />
+
+<form asp-action="Favoritos">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="text-center">
+        <br />
+        @Html.ActionLink("Pratos Favoritos", "FavoritosPD", "Clientes", null, new { style = "background-color:wheat; border-color:black; color:black; height:40px; width:200px", @class = "btn btn-primary" })
+        <br />
+        <br />
+        @Html.ActionLink("Restaurantes Favoritos", "FavoritosR", "Clientes", null, new { style = "background-color:wheat; border-color:black; color:black; height:40px; width:200px", @class = "btn btn-primary" })
+        <br />
+    </div>
+
+</form>

@@ -1,0 +1,84 @@
+﻿@model IEnumerable<RISTORANTIS.Models.Utilizador>
+
+@{
+    ViewData["Title"] = "GerirUtilizadores";
+}
+
+<h1 class="text-center">Gerir Utilizadores</h1>
+
+<div class="text-center">
+    @Html.ActionLink("Restaurantes", "ProcurarRestaurantes", "Administradores", null, new { style = "background-color:wheat; border-color:black; color:black; height:40px; width:200px", @class = "btn btn-primary; text-center" })
+    @Html.ActionLink("Clientes", "ProcurarClientes", "Administradores", null, new { style = "background-color:wheat; border-color:black; color:black; height:40px; width:200px", @class = "btn btn-primary" })
+    @Html.ActionLink("Utilizadores", "GerirUtilizadores", "Administradores", null, new { style = "background-color:wheat; border-color:black; color:black; height:40px; width:200px", @class = "btn btn-primary" })
+</div>
+<br />
+
+<link href="~/StyleSheetGeral.css" rel="stylesheet" />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th hidden>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th hidden>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+      
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td hidden>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td hidden>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+				<td>
+					@if (item.Estado == "Bloqueado")
+					{
+						<a asp-action="Desbloquear" asp-route-id="@item.IdUtilizador" style="color:peru">Desbloquear</a> <label> | </label>
+						@*<a asp-action="Detalhes"  asp-controller="Administradores"  asp-route-id="@item.IdUtilizador" style="color:peru"> Detalhes </a>*@
+					}
+					@if (item.Cliente != null && item.Restaurante == null)
+					{
+						<a asp-action="Bloquear" asp-route-id="@item.IdUtilizador" style="color:peru">Bloquear</a> 
+						@*<a asp-action="Detalhes" asp-controller="Administradores" asp-route-id="@item.IdUtilizador" style="color:peru">Detalhes</a>*@
+					}
+					else if (item.Restaurante != null && item.Cliente == null)
+					{
+						<a asp-action="Bloquear" asp-route-id="@item.IdUtilizador" style="color:peru">Bloquear</a> <label> | </label>
+						<a asp-action="Detalhes" asp-controller="Administradores" asp-route-id="@item.IdUtilizador" style="color:peru">Detalhes</a>
+					}
+				</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Painel" style="color:black">Voltar ao Menu</a>
+</div>

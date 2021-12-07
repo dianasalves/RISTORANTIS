@@ -1,0 +1,65 @@
+﻿@model IEnumerable<RISTORANTIS.Models.PedirRegisto>
+
+@{
+    ViewData["Title"] = "Pedidos de Restaurante";
+}
+
+<h1>Pedidos de Restaurante</h1>
+
+<link href="~/StyleSheetGeral.css" rel="stylesheet" />
+
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdRestauranteNavigation.Fotografia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdRestauranteNavigation.IdRestauranteNavigation.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdRestauranteNavigation.IdRestauranteNavigation.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdRestauranteNavigation.IdRestauranteNavigation.Username)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.IdRestauranteNavigation.)*@
+
+                @{
+                    var imagem = String.Format("data:image/gif;base64,{0}", item.IdRestauranteNavigation.Fotografia);
+                }
+                <img src="@imagem" height="75" width: auto />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdRestauranteNavigation.IdRestauranteNavigation.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdRestauranteNavigation.IdRestauranteNavigation.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdRestauranteNavigation.IdRestauranteNavigation.Username)
+            </td>
+            <td>
+                <a asp-action="AceitarPedidos" asp-route-id="@item.IdPedirRegisto" style="color:peru"> Aceitar </a> |
+                <a asp-action="RejeitarPedidos" asp-route-id="@item.IdPedirRegisto" style="color:peru"> Rejeitar </a> |
+                <a asp-action="Detalhes" asp-controller="Administradores" asp-route-id="@item.IdRestaurante" style="color:peru"> Detalhes </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Painel" style="color:black">Voltar ao Menu</a>
+</div>

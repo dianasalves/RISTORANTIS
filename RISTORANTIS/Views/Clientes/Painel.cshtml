@@ -1,0 +1,36 @@
+﻿
+@{
+	ViewData["Title"] = "Painel";
+}
+
+<div class="text-center">
+	<h1 class="display-4">Bem-Vindo @Context.Session.GetString("nome")</h1>
+</div>
+
+<link href="~/StyleSheetGeral.css" rel="stylesheet" />
+
+<div class="text-center">
+    <h1>Painel de Cliente</h1>
+</div>
+
+    <form asp-action="Painel">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="text-center">
+            <br />
+            @Html.ActionLink("Ver Pratos Do Dia", "VerPratosDoDia", "Clientes", null, new { style = "background-color:wheat; border-color:black; color:black; height:40px; width:200px", @class = "btn btn-primary" })
+            <br />
+            <br />
+            @Html.ActionLink("Ver Restaurantes", "VerRestaurantes", "Clientes", null, new { style = "background-color:wheat; border-color:black; color:black; height:40px; width:200px", @class = "btn btn-primary" })
+            <br />
+            <br />
+            @Html.ActionLink("Ver Favoritos", "Favoritos", "Clientes", null, new { style = "background-color:wheat; border-color:black; color:black; height:40px; width:200px", @class = "btn btn-primary" })
+            <br />
+            <br />
+            @Html.ActionLink("Gerir Notificações", "Notificacoes", "Clientes", null, new { style = "background-color:wheat; border-color:black; color:black; height:40px; width:200px", @class = "btn btn-primary" })
+            <br />
+            <br />
+            @Html.ActionLink("Alterar Dados", "AlterarDados", "Clientes", null, new { style = "background-color:wheat; border-color:black; color:black; height:40px; width:200px", @class = "btn btn-primary" })
+        </div>
+
+    </form>

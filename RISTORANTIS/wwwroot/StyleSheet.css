@@ -1,0 +1,18 @@
+﻿body {
+    margin:0;
+    padding:0;
+    background-image: url('Style/—Pngtree—fast food background snacks desserts_1207024.jpg');
+    background-size:cover;   
+    background-attachment: fixed;
+}
+section{
+   position:absolute;
+   top:70%;
+   left:52%;
+   transform:  translate(-50%, -50%);
+   width:350px;
+   height:420px;
+   justify-content:center;
+   box-sizing:border-box;
+}
+
