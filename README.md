@@ -1,5 +1,5 @@
 # RISTORANTIS
-O portal deve está organizado em três partes distintas:
+O portal está organizado em três partes distintas:
   • A parte pública: aqui podem ser consultados a informação dos restaurantes (endereço, email, telefone, localização GPS, etc.) e consultar os pratos do dia dos restaurantes;
   • A parte privada (utilizadores autenticados): aqui os utilizadores exercem as  tarefas permitidas. Os clientes podem pesquisar pratos do dia por palavra chave e/ou por tipo; 
   editar listas de pratos preferidos e restaurantes preferidos. Os restaurantes registam os pratos do dia. Pode reutilizar pratos anteriores (cópia):
